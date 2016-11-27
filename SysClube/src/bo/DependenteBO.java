@@ -13,9 +13,11 @@ public class DependenteBO {
 
     //Atributos
     private String nome;
+    protected String nomeSocio;
     private int telefone;
     private int CPF;
     private int cod_socio;
+    protected String grau_dependencia;
 
     //Metodos
     public String getNome() {
@@ -48,6 +50,22 @@ public class DependenteBO {
 
     public void setCod_socio(int cod_socio) {
         this.cod_socio = cod_socio;
+    }
+
+    public String getNomeSocio() {
+        return nomeSocio;
+    }
+
+    public void setNomeSocio(String nomeSocio) {
+        this.nomeSocio = nomeSocio;
+    }
+
+    public String getGrau_dependencia() {
+        return grau_dependencia;
+    }
+
+    public void setGrau_dependencia(String grau_dependencia) {
+        this.grau_dependencia = grau_dependencia;
     }
 
 }

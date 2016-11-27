@@ -6,7 +6,9 @@
 package interfacegrafica;
 
 import bo.ClienteBO;
+import bo.DependenteBO;
 import ctrl.ClienteCTRL;
+import ctrl.DependenteCTRL;
 import java.text.ParseException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,10 +21,11 @@ import javax.swing.text.MaskFormatter;
 public class ManterDependente extends javax.swing.JInternalFrame {
 
     ClienteBO clienteBo = new ClienteBO();
-    ClienteCTRL clienteCtrl = new ClienteCTRL();
+    DependenteBO dependenteBo = new DependenteBO();
+    DependenteCTRL dependenteCtrl = new DependenteCTRL();
     String op = "";
     MaskFormatter mascaraCPF;
-    
+
     private JFrame tela1;
 
     /**
@@ -57,16 +60,16 @@ public class ManterDependente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bt_novo = new javax.swing.JButton();
         bt_salvar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bt_buscar = new javax.swing.JButton();
         bt_editar = new javax.swing.JButton();
-        jButtonFechar = new javax.swing.JButton();
+        bt_fechar = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
         txt_codigoSocio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldNome_Socio = new javax.swing.JTextField();
+        txt_NomeSocio = new javax.swing.JTextField();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -78,25 +81,40 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         txt_telefone = new javax.swing.JTextField();
         jLayeredPane3 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        grid_Dependentes = new javax.swing.JTable();
 
-        bt_salvar.setText("Novo");
+        bt_novo.setText("Novo");
+        bt_novo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_novoActionPerformed(evt);
+            }
+        });
+
+        bt_salvar.setText("Salvar");
         bt_salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_salvarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Salvar");
-
-        jButton3.setText("Buscar");
+        bt_buscar.setText("Buscar");
+        bt_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_buscarActionPerformed(evt);
+            }
+        });
 
         bt_editar.setText("Editar");
-
-        jButtonFechar.setText("Fechar");
-        jButtonFechar.addActionListener(new java.awt.event.ActionListener() {
+        bt_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFecharActionPerformed(evt);
+                bt_editarActionPerformed(evt);
+            }
+        });
+
+        bt_fechar.setText("Fechar");
+        bt_fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_fecharActionPerformed(evt);
             }
         });
 
@@ -109,7 +127,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txt_codigoSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jTextFieldNome_Socio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(txt_NomeSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -123,7 +141,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_codigoSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNome_Socio, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_NomeSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
@@ -136,7 +154,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldNome_Socio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_NomeSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -151,6 +169,11 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         jLabel6.setText("Telefone:");
 
         cmb_tipoGrau.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esposo(a)", "Filho(a)" }));
+        cmb_tipoGrau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_tipoGrauActionPerformed(evt);
+            }
+        });
 
         jLayeredPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -209,7 +232,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
 
         jLayeredPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dependentes"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grid_Dependentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null}
             },
@@ -217,7 +240,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 "Nome", "CPF", "Tipo Dependência", "Telefone"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(grid_Dependentes);
 
         jLayeredPane3.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -243,15 +266,15 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                     .addComponent(jLayeredPane2)
                     .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(bt_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(bt_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_editar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonFechar)
+                        .addComponent(bt_fechar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -260,11 +283,11 @@ public class ManterDependente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_novo)
                     .addComponent(bt_salvar)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(bt_buscar)
                     .addComponent(bt_editar)
-                    .addComponent(jButtonFechar))
+                    .addComponent(bt_fechar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -278,33 +301,134 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharActionPerformed
+    private void bt_fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_fecharActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButtonFecharActionPerformed
+    }//GEN-LAST:event_bt_fecharActionPerformed
+
+    private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
+        op = "incluir";
+        txt_codigoSocio.setEnabled(false);
+        DesbloquearCampos();
+        LimparCampos();
+        bt_novo.setEnabled(false);
+        bt_buscar.setEnabled(false);
+        bt_editar.setEnabled(false);
+        bt_salvar.setEnabled(true);
+    }//GEN-LAST:event_bt_novoActionPerformed
+
+    private void bt_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editarActionPerformed
+        op = "alterar";
+        bt_buscar.setEnabled(false);
+        bt_salvar.setEnabled(true);
+        bt_novo.setEnabled(false);
+        bt_editar.setEnabled(false);
+        DesbloquearCampos();
+        txt_codigoSocio.setEditable(false);
+    }//GEN-LAST:event_bt_editarActionPerformed
+
+    private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
+        DependenteBO retorno = new DependenteBO();
+        
+        try {
+            dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
+            //retorno = clienteCtrl.BuscaCliente(clienteBo);
+
+            txt_codigoSocio.setText("");
+            cmb_tipoGrau.setSelectedItem("Esposo(a)");
+            txt_NomeSocio.setText("");
+            txt_documento.setText("");
+            txt_nome.setText("");
+            txt_telefone.setText("");
+            bt_editar.setEnabled(true);
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
+            LimparCampos();
+        }
+    
+    }//GEN-LAST:event_bt_buscarActionPerformed
+
+    private void cmb_tipoGrauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipoGrauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmb_tipoGrauActionPerformed
 
     private void bt_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salvarActionPerformed
-        // TODO add your handling code here:
+        if ((!txt_nome.getText().equals("")) || (!txt_documento.getText().equals("")) || (!cmb_tipoGrau.getSelectedItem().equals(""))) {
+
+            try {
+                dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
+                dependenteBo.setNomeSocio(txt_NomeSocio.getText());
+                dependenteBo.setNome(txt_nome.getText());
+                dependenteBo.setCPF(Integer.parseInt(txt_documento.getText()));
+                dependenteBo.setTelefone(Integer.parseInt(txt_telefone.getText()));
+                
+                if ("Esposo(a)".equals(cmb_tipoGrau.getSelectedItem())) {
+                        dependenteBo.setGrau_dependencia("Esposo(a)");
+                    } else if ("Filho(a)".equals(cmb_tipoGrau.getSelectedItem())) {
+                        dependenteBo.setGrau_dependencia("Filho(a)");
+                    }
+
+                if ("incluir".equals(op)) {
+                    dependenteCtrl.IncluirCliente(dependenteBo);
+                }
+
+                if ("alterar".equals(op)) {
+                    dependenteCtrl.AlterarCliente(dependenteBo);
+                }
+
+                JOptionPane.showMessageDialog(null, "Salvo com sucesso.");
+                op = "";
+                LimparCampos();
+                DesbloquearCampos();
+                txt_codigoSocio.setEnabled(true);
+                bt_editar.setEnabled(false);
+                bt_salvar.setEnabled(false);
+                bt_buscar.setEnabled(true);  
+                bt_novo.setEnabled(true);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "O nome, tipo e CPF/CNPJ são obrigatórios.");
+        }
     }//GEN-LAST:event_bt_salvarActionPerformed
 
-    private void LimparCampos() {
-
+private void LimparCampos() {
+        txt_codigoSocio.setText("");
+        cmb_tipoGrau.setSelectedItem("Esposo(a)");
+        txt_NomeSocio.setText("");
+        txt_documento.setText("");
+        txt_nome.setText("");
+        txt_telefone.setText("");
+        
     }
 
     private void BloquearCampos() {
-
+        txt_codigoSocio.setEditable(false);
+        cmb_tipoGrau.setEditable(false);
+        txt_NomeSocio.setEditable(false);
+        txt_documento.setEditable(false);
+        txt_nome.setEditable(false);
+        txt_telefone.setEditable(false);
     }
 
     private void DesbloquearCampos() {
-
+        txt_codigoSocio.setEditable(true);
+        cmb_tipoGrau.setEditable(true);
+        txt_NomeSocio.setEditable(true);
+        txt_documento.setEditable(true);
+        txt_nome.setEditable(true);
+        txt_telefone.setEditable(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_buscar;
     private javax.swing.JButton bt_editar;
+    private javax.swing.JButton bt_fechar;
+    private javax.swing.JButton bt_novo;
     private javax.swing.JButton bt_salvar;
     private javax.swing.JComboBox<String> cmb_tipoGrau;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonFechar;
+    private javax.swing.JTable grid_Dependentes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,8 +439,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFieldNome_Socio;
+    private javax.swing.JTextField txt_NomeSocio;
     private javax.swing.JTextField txt_codigoSocio;
     private javax.swing.JTextField txt_documento;
     private javax.swing.JTextField txt_nome;
