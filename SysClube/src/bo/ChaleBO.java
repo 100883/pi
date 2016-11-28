@@ -14,11 +14,7 @@ public class ChaleBO {
     protected int cod_chale;
     protected String desc_chale;
     
-    public ChaleBO(int cod_chale, String desc_chale){
-        this.cod_chale = cod_chale;
-        this.desc_chale = desc_chale;
-    }
-    
+      
     //Metodos
     public int getCod_chale() {
         return cod_chale;

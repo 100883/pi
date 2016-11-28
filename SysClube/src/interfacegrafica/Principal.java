@@ -63,9 +63,10 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItemAlugarChale = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
@@ -125,6 +126,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setText("Cadastro de Chalés");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("Vendas");
@@ -137,13 +146,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem8);
 
-        jMenuItem21.setText("Consultar Venda");
-        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAlugarChale.setText("Alugar Chalé");
+        jMenuItemAlugarChale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem21ActionPerformed(evt);
+                jMenuItemAlugarChaleActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem21);
+        jMenu4.add(jMenuItemAlugarChale);
 
         jMenuItem20.setText("Cancelamento de Venda");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
@@ -235,13 +244,13 @@ public class Principal extends javax.swing.JFrame {
         this.u.centralizar(f3);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+    private void jMenuItemAlugarChaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlugarChaleActionPerformed
         /*ConsultaVenda f9 = new ManterVenda();
         jDesktopPane1.add(f9);
         f9.setVisible(true);
         Util u = null;
         this.u.centralizar(f9);*/
-    }//GEN-LAST:event_jMenuItem21ActionPerformed
+    }//GEN-LAST:event_jMenuItemAlugarChaleActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         /*CancelaVenda f10 = new CancelaVenda();
@@ -266,6 +275,14 @@ public class Principal extends javax.swing.JFrame {
         Util u = null;
         this.u.centralizar(f4);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ManterChale f5 = new ManterChale();
+        jDesktopPane1.add(f5);
+        f5.setVisible(true);
+        Util u = null;
+        this.u.centralizar(f5);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,11 +330,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItemAlugarChale;
     // End of variables declaration//GEN-END:variables
 
 }

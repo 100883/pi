@@ -19,13 +19,13 @@ public class DependenteDAO {
     public static void IncluirCliente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
         String SQL = "INSERT INTO dependentes (cod_socio, nome_socio, nome_dependente, cpf_dependente, telefone, grau_dependencia) "
-                + "VALUES (" + dependenteBo.getCod_socio()+ ","
-                + "'" + dependenteBo.getNomeSocio()+ "',"
-                + "'" + dependenteBo.getNome()+ "',"
-                + "'" + dependenteBo.getCPF()+ "',"
-                + "'" + dependenteBo.getTelefone()+ "',"
-                + "'" + dependenteBo.getGrau_dependencia()+ "'";
-                        
+                + "VALUES (" + dependenteBo.getCod_socio() + ","
+                + "'" + dependenteBo.getNomeSocio() + "',"
+                + "'" + dependenteBo.getNome() + "',"
+                + "'" + dependenteBo.getCPF() + "',"
+                + "'" + dependenteBo.getTelefone() + "',"
+                + "'" + dependenteBo.getGrau_dependencia() + "'";
+
         conexao.conectaBD();
         conexao.executaSQL(SQL);
         conexao.desconectaBD();
@@ -35,14 +35,13 @@ public class DependenteDAO {
         Conexao conexao = new Conexao();
         String SQL = "UPDATE dependentes SET "
                 + "cod_socio = '" + dependenteBo.getCod_socio() + "'"
-                + ", nome_socio = '" + dependenteBo.getNomeSocio()+ "'"
-                + ", nome_dependente = '" + dependenteBo.getNome()+ "'"
-                + ", cpf_dependente = '" + dependenteBo.getCPF()+ "'"
-                + ", telefone = '" + dependenteBo.getTelefone()+ "'"
-                + ", grau_dependencia = '" + dependenteBo.getGrau_dependencia()+ "'"
-                
-                + " WHERE cod_socio = " + dependenteBo.getCod_socio()+ "";
-        
+                + ", nome_socio = '" + dependenteBo.getNomeSocio() + "'"
+                + ", nome_dependente = '" + dependenteBo.getNome() + "'"
+                + ", cpf_dependente = '" + dependenteBo.getCPF() + "'"
+                + ", telefone = '" + dependenteBo.getTelefone() + "'"
+                + ", grau_dependencia = '" + dependenteBo.getGrau_dependencia() + "'"
+                + " WHERE cod_socio = " + dependenteBo.getCod_socio() + "";
+
         conexao.conectaBD();
         conexao.executaSQL(SQL);
         conexao.desconectaBD();
@@ -51,14 +50,14 @@ public class DependenteDAO {
     public DependenteBO BuscaCliente(DependenteBO dependenteBo) throws SQLException {
         DependenteBO retorno = new DependenteBO();
         ClienteBO retorno2 = new ClienteBO();
-        
+
         ResultSet rs = null;
         Conexao conexao = new Conexao();
-        String SQL = "SELECT * FROM dependentes WHERE cod_socio = " + dependenteBo.getCod_socio()+ "";
-        
-        conexao.conectaBD();        
+        String SQL = "SELECT * FROM dependentes WHERE cod_socio = " + dependenteBo.getCod_socio() + "";
+
+        conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
-        
+
         if (rs.next()) {
             retorno.setCod_socio(rs.getInt("cod_socio"));
             retorno2.setNome(rs.getString("nome"));
@@ -67,10 +66,10 @@ public class DependenteDAO {
             retorno.setTelefone(rs.getInt("telefone"));
             retorno.setGrau_dependencia(rs.getString("grau_dependencia"));
         }
-        
+
         rs.close();
         conexao.desconectaBD();
         return retorno;
     }
-    
+
 }
