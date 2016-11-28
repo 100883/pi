@@ -14,15 +14,15 @@ import persistencia.DependenteDAO;
 public class DependenteCTRL {
     public DependenteBO dependenteBo = new DependenteBO();
     public DependenteDAO dependenteDao = new DependenteDAO();
-    public void IncluirCliente(DependenteBO dependenteBo) throws Exception {
-        DependenteDAO.IncluirCliente(dependenteBo);
+    public void IncluirDependente(DependenteBO dependenteBo) throws Exception {
+        DependenteDAO.IncluirDependente(dependenteBo);
     }
-    public void AlterarCliente(DependenteBO dependenteBo) throws Exception {
-        DependenteDAO.AlterarCliente(dependenteBo);
+    public void AlterarDependente(DependenteBO dependenteBo) throws Exception {
+        DependenteDAO.AlterarDependente(dependenteBo);
     }
-    public DependenteBO BuscaCliente(DependenteBO dependenteBo) throws Exception {
+    public DependenteBO BuscaDependente(DependenteBO dependenteBo) throws Exception {
         DependenteBO retorno = new DependenteBO();
-        retorno = dependenteDao.BuscaCliente(dependenteBo);
+        retorno = dependenteDao.BuscaDependente(dependenteBo);
         return retorno;
     }
 }

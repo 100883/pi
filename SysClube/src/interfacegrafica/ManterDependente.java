@@ -369,11 +369,11 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                     }
 
                 if ("incluir".equals(op)) {
-                    dependenteCtrl.IncluirCliente(dependenteBo);
+                    dependenteCtrl.IncluirDependente(dependenteBo);
                 }
 
                 if ("alterar".equals(op)) {
-                    dependenteCtrl.AlterarCliente(dependenteBo);
+                    dependenteCtrl.AlterarDependente(dependenteBo);
                 }
 
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso.");

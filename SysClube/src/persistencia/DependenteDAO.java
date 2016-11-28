@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class DependenteDAO {
 
-    public static void IncluirCliente(DependenteBO dependenteBo) {
+    public static void IncluirDependente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
         String SQL = "INSERT INTO dependentes (cod_socio, nome_socio, nome_dependente, cpf_dependente, telefone, grau_dependencia) "
                 + "VALUES (" + dependenteBo.getCod_socio() + ","
@@ -31,7 +31,7 @@ public class DependenteDAO {
         conexao.desconectaBD();
     }
 
-    public static void AlterarCliente(DependenteBO dependenteBo) {
+    public static void AlterarDependente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
         String SQL = "UPDATE dependentes SET "
                 + "cod_socio = '" + dependenteBo.getCod_socio() + "'"
@@ -47,7 +47,7 @@ public class DependenteDAO {
         conexao.desconectaBD();
     }
 
-    public DependenteBO BuscaCliente(DependenteBO dependenteBo) throws SQLException {
+    public DependenteBO BuscaDependente(DependenteBO dependenteBo) throws SQLException {
         DependenteBO retorno = new DependenteBO();
         ClienteBO retorno2 = new ClienteBO();
 
