@@ -236,19 +236,19 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-        ConsultaVenda f9 = new ManterVenda();
+        /*ConsultaVenda f9 = new ManterVenda();
         jDesktopPane1.add(f9);
         f9.setVisible(true);
         Util u = null;
-        this.u.centralizar(f9);
+        this.u.centralizar(f9);*/
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-        CancelaVenda f10 = new CancelaVenda();
+        /*CancelaVenda f10 = new CancelaVenda();
         jDesktopPane1.add(f10);
         f10.setVisible(true);
         Util u = null;
-        this.u.centralizar(f10);
+        this.u.centralizar(f10);*/
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
