@@ -8,10 +8,15 @@ public class Conexao {
     private Statement st;
     public ResultSet rs;
 
-    private final String driver = "oracle.jdbc.OracleDriver";
+    private String driver = "org.postgresql.Driver";
+    private String url = "jdbc:postgresql://localhost:5432/sysclube";
+    private String user = "postgres";
+    private String password = "root";
+    
+    /*private final String driver = "oracle.jdbc.OracleDriver";
     private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
     private final String user = "SYSCLUBE";
-    private final String password = "aluno";
+    private final String password = "aluno";*/
 
     //******************************************************************************//
     //  - Construtor para o objeto da classe Conexao                                //
