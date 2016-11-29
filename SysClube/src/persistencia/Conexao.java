@@ -9,7 +9,7 @@ public class Conexao {
     public ResultSet rs;
 
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost:5432/sysclube";
+    private String url = "jdbc:postgresql://localhost:5432/sysclub";
     private String user = "postgres";
     private String password = "root";
     

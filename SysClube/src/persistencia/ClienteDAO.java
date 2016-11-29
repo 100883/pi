@@ -19,7 +19,7 @@ public class ClienteDAO {
 
     public void AlterarCliente(ClienteBO clienteBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "UPDATE clientes SET nome_cli = '" + clienteBo.getNome() + "'"
+        String SQL = "UPDATE socios SET nome_cli = '" + clienteBo.getNome() + "'"
                 + ", tipo_cli = '" + clienteBo.getTipo() + "'"
                 + ", documento_cli = '" + clienteBo.getDocumento() + "'"
                 + ", cep_cli = '" + clienteBo.getCep() + "'"
@@ -36,8 +36,8 @@ public class ClienteDAO {
 
     public void IncluirCliente(ClienteBO clienteBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO clientes (nome_cli,tipo_cli,documento_cli,codigo_conv,cep_cli,numero_cli,complemento_cli,fone_cli,fax_cli,email_cli) "
-                + "VALUES (" + clienteBo.getNome() + ","
+        String SQL = "INSERT INTO socios (nome_cli,tipo_cli,documento_cli,cep_cli,numero_cli,complemento_cli,fone_cli,fax_cli,email_cli) "
+                + "VALUES ('" + clienteBo.getNome() + "',"
                 + "'" + clienteBo.getTipo() + "',"
                 + "'" + clienteBo.getDocumento() + "',"
                 + "'" + clienteBo.getCep() + "',"
@@ -55,7 +55,7 @@ public class ClienteDAO {
         ClienteBO retorno = new ClienteBO();
         ResultSet rs = null;
         Conexao conexao = new Conexao();
-        String SQL = "SELECT * FROM clientes WHERE codigo_cli = " + clienteBo.getCodigo() + "";
+        String SQL = "SELECT * FROM socios WHERE codigo_cli = " + clienteBo.getCodigo() + "";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
         if (rs.next()) {
@@ -90,15 +90,15 @@ public class ClienteDAO {
         Conexao conexao = new Conexao();
 
         ArrayList dados = new ArrayList();
-        String SQL = "select * from socios";
+        String SQL = "SELECT * FROM socios WHERE nome_cli LIKE '%" + clienteBo.getNome() + "%';";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 
         while (rs.next()) {
 
-            clienteBo.setNome(rs.getString("nome"));
-            clienteBo.setDocumento(rs.getString("documento"));
-            clienteBo.setFone(rs.getString("fone"));
+            clienteBo.setNome(rs.getString("nome_cli"));
+            clienteBo.setDocumento(rs.getString("documento_cli"));
+            clienteBo.setFone(rs.getString("fone_cli"));
             dados.add(clienteBo);
         }
         rs.close();

@@ -11,16 +11,17 @@ package bo;
  * @author Gui Freitas
  */
 public class ProdutoBO {
-    private int codigo;
+    private String codigo;
     private int minimo;
     private boolean status;
     private String nome;
+    private float valor_prod;
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -46,6 +47,19 @@ public class ProdutoBO {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    /**
+     * @return the valor_prod
+     */
+    public float getValor_prod() {
+        return valor_prod;
+    }
+
+    /**
+     * @param valor_prod the valor_prod to set
+     */
+    public void setValor_prod(float valor_prod) {
+        this.valor_prod = valor_prod;
     }
 
     

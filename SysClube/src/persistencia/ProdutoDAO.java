@@ -16,9 +16,13 @@ public class ProdutoDAO {
 
     public void IncluirProduto(ProdutoBO produtoBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO produtos (status_prod,minimo_prod,nome_prod,principio_prod,fornecedor_prod,grupo_prod,retencao_prod) "
-                + "VALUES ('" + produtoBo.getStatus() + "'," + produtoBo.getMinimo() + ","
-                + "'" + produtoBo.getNome() + "','";
+        String SQL = ""
+                + "INSERT INTO produtos (codigo_prod, nome_prod, status_prod, minimo_prod, valor_prod) " 
+                + "VALUES ('" + produtoBo.getCodigo()+ "',"
+                + "'" + produtoBo.getNome()+ "',"
+                + "'" + produtoBo.getStatus() + "',"
+                + "" + produtoBo.getMinimo() + "," 
+                + produtoBo.getValor_prod() + ");";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -27,10 +31,15 @@ public class ProdutoDAO {
 
     public void AlterarProduto(ProdutoBO produtoBo) throws Exception {
         Conexao conexao = new Conexao();
-        int cod = produtoBo.getCodigo();
-        String SQL = "UPDATE produtos SET codigo_prod = " + produtoBo.getStatus() + ", minimo_prod = " + produtoBo.getMinimo() + ""
-                + ", status_prod = '" + produtoBo.getStatus() + "', nome_prod = '" + produtoBo.getNome() + "'"
-                + ", principio_prod = '";
+        String cod = produtoBo.getCodigo();
+        String SQL = "UPDATE produtos SET "
+                + "codigo_prod = '" + produtoBo.getCodigo() + "',"
+                + "nome_prod = '" + produtoBo.getNome()+ "',"
+                + "status_prod = '" + produtoBo.getStatus() + "'," 
+                + "minimo_prod = " + produtoBo.getMinimo() + ","
+                + "valor_prod = " + produtoBo.getValor_prod() + ""
+                + " WHERE codigo_prod = " + produtoBo.getCodigo()+ "";
+
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -48,6 +57,8 @@ public class ProdutoDAO {
             retorno.setStatus(rs.getBoolean("status_prod"));
             retorno.setMinimo(rs.getInt("minimo_prod"));
             retorno.setNome(rs.getString("nome_prod"));
+            retorno.setMinimo(rs.getInt("minimo_prod"));
+            retorno.setValor_prod(rs.getFloat("valor_prod"));
 
         }
         rs.close();

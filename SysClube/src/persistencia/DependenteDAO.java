@@ -19,13 +19,12 @@ public class DependenteDAO {
 
     public static void IncluirDependente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO dependentes (cod_socio, nome_socio, nome_dependente, cpf_dependente, telefone, grau_dependencia) "
-                + "VALUES (" + dependenteBo.getCod_socio() + ","
-                + "'" + dependenteBo.getNomeSocio() + "',"
-                + "'" + dependenteBo.getNome() + "',"
-                + "'" + dependenteBo.getCPF() + "',"
-                + "'" + dependenteBo.getTelefone() + "',"
-                + "'" + dependenteBo.getGrau_dependencia() + "'";
+        String SQL = "INSERT INTO dependentes (codigo_dep, nome_dep, documento_dep, grau_dep, codigo_cli, fone_cli) "
+                + "VALUES (" + dependenteBo.getNome()+ ","
+                + "'" + dependenteBo.getCPF()+ "',"
+                + "'" + dependenteBo.getGrau_dependencia()+ "',"
+                + "'" + dependenteBo.getCod_socio()+ "',"
+                + "'" + dependenteBo.getTelefone() + "'";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -35,13 +34,12 @@ public class DependenteDAO {
     public static void AlterarDependente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
         String SQL = "UPDATE dependentes SET "
-                + "cod_socio = '" + dependenteBo.getCod_socio() + "'"
-                + ", nome_socio = '" + dependenteBo.getNomeSocio() + "'"
-                + ", nome_dependente = '" + dependenteBo.getNome() + "'"
-                + ", cpf_dependente = '" + dependenteBo.getCPF() + "'"
-                + ", telefone = '" + dependenteBo.getTelefone() + "'"
-                + ", grau_dependencia = '" + dependenteBo.getGrau_dependencia() + "'"
-                + " WHERE cod_socio = " + dependenteBo.getCod_socio() + "";
+                + "codigo_cli = '" + dependenteBo.getCod_socio() + "'"
+                + ", nome_dep = '" + dependenteBo.getNome() + "'"
+                + ", documento_dep = '" + dependenteBo.getCPF() + "'"
+                + ", fone_cli = '" + dependenteBo.getTelefone() + "'"
+                + ", grau_dep = '" + dependenteBo.getGrau_dependencia() + "'"
+                + " WHERE codigo_cli = " + dependenteBo.getCod_socio() + "";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -54,18 +52,18 @@ public class DependenteDAO {
 
         ResultSet rs = null;
         Conexao conexao = new Conexao();
-        String SQL = "SELECT * FROM dependentes WHERE cod_socio = " + dependenteBo.getCod_socio() + "";
+        String SQL = "SELECT * FROM dependentes WHERE codigo_cli = " + dependenteBo.getCod_socio() + "";
 
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 
         if (rs.next()) {
-            retorno.setCod_socio(rs.getInt("cod_socio"));
+            retorno.setCod_socio(rs.getInt("codigo_cli"));
             retorno2.setNome(rs.getString("nome"));
-            retorno.setNome(rs.getString("nome"));
-            retorno.setCPF(rs.getInt("CPF"));
-            retorno.setTelefone(rs.getInt("telefone"));
-            retorno.setGrau_dependencia(rs.getString("grau_dependencia"));
+            retorno.setNome(rs.getString("nome_dep"));
+            retorno.setCPF(rs.getInt("documento_dep"));
+            retorno.setTelefone(rs.getInt("fone_cli"));
+            retorno.setGrau_dependencia(rs.getString("grau_dep"));
         }
 
         rs.close();
@@ -85,10 +83,10 @@ public class DependenteDAO {
 
         while (rs.next()) {
 
-            dependenteBo.setNome(rs.getString("nome"));
-            dependenteBo.setCPF(rs.getInt("CPF"));
-            dependenteBo.setGrau_dependencia(rs.getString("grau_dependencia"));
-            dependenteBo.setTelefone(rs.getInt("telefone"));
+            dependenteBo.setNome(rs.getString("nome_dep"));
+            dependenteBo.setCPF(rs.getInt("documento_dep"));
+            dependenteBo.setGrau_dependencia(rs.getString("grau_dep"));
+            dependenteBo.setTelefone(rs.getInt("fone_cli"));
             dados.add(dependenteBo);
         }
         rs.close();

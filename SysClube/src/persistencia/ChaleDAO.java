@@ -18,10 +18,9 @@ import java.util.ArrayList;
 public class ChaleDAO {
     public void AlterarChale(ChaleBO chaleBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "UPDATE chales SET nome_cli = "
-                + "'" + chaleBo.getCod_chale()+ "'"
-                + ", tipo_cli = '" + chaleBo.getDesc_chale()+ "'"
-                + " WHERE codigo_cli = " + chaleBo.getCod_chale()+ "";
+        String SQL = "UPDATE chales SET cod_chale = " + "'" + chaleBo.getCod_chale()+ "'"
+                + ", desc_chale = '" + chaleBo.getDesc_chale()+ "'"
+                + " WHERE cod_chale = " + chaleBo.getCod_chale()+ "";
         
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -30,10 +29,10 @@ public class ChaleDAO {
 
     public void IncluirChale(ChaleBO chaleBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO chales (nome_cli,tipo_cli,documento_cli,codigo_conv,cep_cli,numero_cli,complemento_cli,fone_cli,fax_cli,email_cli) "
+        String SQL = "INSERT INTO chales (cod_chale, desc_chale, status) "
                 + "VALUES (" + chaleBo.getCod_chale()+ ","
-                + "'" + chaleBo.getDesc_chale() + "'"
-                + "Disponível";
+                + "'" + chaleBo.getDesc_chale() + "',"
+                + "'Disponível')";
                                
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -44,7 +43,7 @@ public class ChaleDAO {
         ChaleBO retorno = new ChaleBO();
         ResultSet rs = null;
         Conexao conexao = new Conexao();
-        String SQL = "SELECT * FROM chales WHERE codigo_chale = " + chaleBo.getCod_chale() + "";
+        String SQL = "SELECT * FROM chales WHERE cod_chale = " + chaleBo.getCod_chale() + "";
         
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
@@ -65,7 +64,7 @@ public class ChaleDAO {
         Conexao conexao = new Conexao();
 
         ArrayList dados = new ArrayList();
-        String SQL = "select * from socios";
+        String SQL = "SELECT * FROM chales WHERE desc_chale LIKE '%" + chaleBo.getDesc_chale()+ "%';";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 

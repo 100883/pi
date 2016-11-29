@@ -226,6 +226,7 @@ public class ManterProduto extends javax.swing.JInternalFrame {
                 produtoBo.setStatus(cb_status.isSelected());
                 produtoBo.setMinimo(Integer.parseInt(txt_minimo.getText()));
                 produtoBo.setNome(txt_nome.getText());
+                produtoBo.setValor_prod(Integer.parseInt(txt_valor.getText()));
 
                 if ("incluir".equals(op)) {
                     produtoCtrl.IncluirProduto(produtoBo);
@@ -240,6 +241,7 @@ public class ManterProduto extends javax.swing.JInternalFrame {
                 txt_codigo.setEditable(true);
                 txt_minimo.setEditable(false);
                 txt_nome.setEditable(false);
+                txt_valor.setEditable(false);
                 cb_status.setEnabled(false);
                 bt_editar.setEnabled(false);
                 bt_salvar.setEnabled(false);
@@ -259,6 +261,7 @@ public class ManterProduto extends javax.swing.JInternalFrame {
         op = "alterar";
         txt_codigo.setEditable(true);
         txt_minimo.setEditable(true);
+        txt_valor.setEditable(true);
         txt_nome.setEditable(true);
         cb_status.setEnabled(true);
         bt_editar.setEnabled(false);
@@ -272,6 +275,7 @@ public class ManterProduto extends javax.swing.JInternalFrame {
         LimparCampos();
         txt_codigo.setEditable(true);
         txt_minimo.setEditable(true);
+        txt_valor.setEditable(true);
         txt_nome.setEditable(true);
         cb_status.setEnabled(true);
         bt_editar.setEnabled(false);
@@ -284,12 +288,13 @@ public class ManterProduto extends javax.swing.JInternalFrame {
         if (txt_codigo != null) {
             ProdutoBO retorno = new ProdutoBO();
             try {
-                produtoBo.setCodigo(Integer.parseInt(txt_codigo.getText()));
+                produtoBo.setCodigo(txt_codigo.getText());
                 retorno = produtoCtrl.BuscaProduto(produtoBo);
 
                 cb_status.setSelected(retorno.getStatus());
                 txt_minimo.setText(String.valueOf(retorno.getMinimo()));
                 txt_nome.setText(retorno.getNome());
+                txt_valor.setText(String.valueOf(retorno.getValor_prod()));
                 bt_editar.setEnabled(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado.");
@@ -325,6 +330,7 @@ public class ManterProduto extends javax.swing.JInternalFrame {
         txt_minimo.setText("");
         txt_nome.setText("");
         cb_status.setSelected(false);
+        txt_valor.setText("");
 
     }
 }

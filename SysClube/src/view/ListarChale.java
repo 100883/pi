@@ -24,6 +24,8 @@ public class ListarChale extends javax.swing.JInternalFrame {
     public ListarChale() {
         initComponents();
     }
+    
+    ChaleBO chaleBo = new ChaleBO();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +40,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txt_listar = new javax.swing.JButton();
-        txt_nomeSocio = new javax.swing.JTextField();
+        txt_descChale = new javax.swing.JTextField();
 
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +72,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(txt_nomeSocio)
+                .addComponent(txt_descChale)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_listar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -82,7 +84,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nomeSocio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_descChale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_listar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,6 +98,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
 
     private void txt_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_listarActionPerformed
         try {
+            chaleBo.setDesc_chale(txt_descChale.getText());
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             ChaleDAO obj = new ChaleDAO();
@@ -125,7 +128,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
     private javax.swing.JButton bt_voltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txt_descChale;
     private javax.swing.JButton txt_listar;
-    private javax.swing.JTextField txt_nomeSocio;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,6 +34,8 @@ public class ListarSocio extends javax.swing.JInternalFrame {
         initComponents();
         this.tela1 = tela1;
     }
+    
+    ClienteBO clienteBo = new ClienteBO();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,6 +108,7 @@ public class ListarSocio extends javax.swing.JInternalFrame {
 
     private void txt_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_listarActionPerformed
         try {
+            clienteBo.setNome(txt_nomeSocio.getText());
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             ClienteDAO obj = new ClienteDAO();
