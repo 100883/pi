@@ -102,7 +102,7 @@ public class ListarChale extends javax.swing.JInternalFrame {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             ChaleDAO obj = new ChaleDAO();
-            ArrayList lista = obj.listar();
+            ArrayList lista = obj.listar(chaleBo.getDesc_chale());
 
             for (int pos = 0; pos < lista.size(); pos++) {
                 String[] saida = new String[3];//novo

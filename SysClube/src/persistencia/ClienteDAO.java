@@ -84,13 +84,13 @@ public class ClienteDAO {
         conexao.desconectaBD();*/
     }
 
-    public ArrayList listar() throws SQLException {
+    public ArrayList listar(String nome) throws SQLException {
         ClienteBO clienteBo = new ClienteBO();
         ResultSet rs = null;
         Conexao conexao = new Conexao();
 
         ArrayList dados = new ArrayList();
-        String SQL = "SELECT * FROM socios WHERE nome_cli LIKE '%" + clienteBo.getNome() + "%';";
+        String SQL = "SELECT * FROM socios WHERE nome_cli LIKE '%" + nome + "%';";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 

@@ -58,13 +58,13 @@ public class ChaleDAO {
         return retorno;
     }
     
-    public ArrayList listar() throws SQLException {
+    public ArrayList listar(String desc) throws SQLException {
         ChaleBO chaleBo = new ChaleBO();
         ResultSet rs = null;
         Conexao conexao = new Conexao();
 
         ArrayList dados = new ArrayList();
-        String SQL = "SELECT * FROM chales WHERE desc_chale LIKE '%" + chaleBo.getDesc_chale()+ "%';";
+        String SQL = "SELECT * FROM chales WHERE desc_chale LIKE '%" + desc + "%';";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 

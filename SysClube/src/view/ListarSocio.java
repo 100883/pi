@@ -112,7 +112,7 @@ public class ListarSocio extends javax.swing.JInternalFrame {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
             ClienteDAO obj = new ClienteDAO();
-            ArrayList lista = obj.listar();
+            ArrayList lista = obj.listar(clienteBo.getNome());
 
             for (int pos = 0; pos < lista.size(); pos++) {
                 String[] saida = new String[3];//novo
