@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package view;
 
 import bo.CepBO;
 import bo.ClienteBO;
@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import interfacegrafica.Util.*;
+import view.Util.*;
 
 /**
  *

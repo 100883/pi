@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package view;
 
 //import bo.LogBO;
 import java.awt.Dimension;
@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JDesktopPane;
-import interfacegrafica.Util.*;
+import view.Util.*;
 
 /**
  *
@@ -136,7 +136,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu4.setText("Vendas");
+        jMenu4.setText("Financeiro");
 
         jMenuItem8.setText("Efetuar Venda");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +154,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItemAlugarChale);
 
-        jMenuItem20.setText("Cancelamento de Venda");
+        jMenuItem20.setText("Fechar Aluguel");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem20ActionPerformed(evt);

@@ -3,36 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacegrafica;
+package view;
 
-import bo.ClienteBO;
-import java.sql.SQLException;
+import bo.ChaleBO;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import persistencia.ClienteDAO;
+import persistencia.ChaleDAO;
+
 
 /**
  *
  * @author Aluno
  */
-public class ListarSocio extends javax.swing.JInternalFrame {
-
-    private JFrame tela1;
+public class ListarChale extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ListarSocio
+     * Creates new form ListarChale
      */
-    public ListarSocio() {
+    public ListarChale() {
         initComponents();
-    }
-
-    public ListarSocio(JFrame tela1) {
-        initComponents();
-        this.tela1 = tela1;
     }
 
     /**
@@ -44,18 +34,25 @@ public class ListarSocio extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bt_voltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txt_nomeSocio = new javax.swing.JTextField();
         txt_listar = new javax.swing.JButton();
-        bt_voltar = new javax.swing.JButton();
+        txt_nomeSocio = new javax.swing.JTextField();
+
+        bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "CPF", "Telefone"
+                "Código Chalé", "Descrição", "Situação"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -67,18 +64,11 @@ public class ListarSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        bt_voltar.setText("Voltar");
-        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_voltarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(txt_nomeSocio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -108,20 +98,20 @@ public class ListarSocio extends javax.swing.JInternalFrame {
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setNumRows(0);
-            ClienteDAO obj = new ClienteDAO();
+            ChaleDAO obj = new ChaleDAO();
             ArrayList lista = obj.listar();
 
             for (int pos = 0; pos < lista.size(); pos++) {
                 String[] saida = new String[3];//novo
-                ClienteBO aux = (ClienteBO) (lista.get(pos));//novo
-                saida[0] = aux.getNome();//novo
-                saida[1] = aux.getDocumento();//novo
-                saida[2] = "" + aux.getFone();//novo
+                ChaleBO aux = (ChaleBO) (lista.get(pos));//novo
+                saida[0] = "" + aux.getCod_chale();//novo
+                saida[1] = aux.getDesc_chale();//novo
+                saida[2] = aux.getStatus();//novo
                 //Incluir nova linha na Tabela
                 model.addRow(saida);//novo
             }
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Sócio não encontrado");
+            JOptionPane.showMessageDialog(null, "Chalé não encontrado");
 
         }
     }//GEN-LAST:event_txt_listarActionPerformed
