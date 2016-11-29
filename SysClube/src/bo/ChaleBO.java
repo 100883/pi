@@ -13,6 +13,7 @@ public class ChaleBO {
     //Atributos
     protected int cod_chale;
     protected String desc_chale;
+    private String status;
     
       
     //Metodos
@@ -30,6 +31,14 @@ public class ChaleBO {
 
     public void setDesc_chale(String desc_chale) {
         this.desc_chale = desc_chale;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

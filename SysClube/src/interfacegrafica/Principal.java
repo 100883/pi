@@ -245,11 +245,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItemAlugarChaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlugarChaleActionPerformed
-        /*ConsultaVenda f9 = new ManterVenda();
+        ManterLocacao f9 = new ManterLocacao();
         jDesktopPane1.add(f9);
         f9.setVisible(true);
         Util u = null;
-        this.u.centralizar(f9);*/
+        this.u.centralizar(f9);
     }//GEN-LAST:event_jMenuItemAlugarChaleActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed

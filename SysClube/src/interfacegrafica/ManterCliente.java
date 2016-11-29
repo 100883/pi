@@ -706,5 +706,5 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField txt_numero;
     private javax.swing.JFormattedTextField txt_uf;
     // End of variables declaration//GEN-END:variables
-
+   
 }
