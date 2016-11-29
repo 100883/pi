@@ -5,14 +5,19 @@
  */
 package interfacegrafica;
 
+import bo.ChaleBO;
 import bo.ClienteBO;
 import bo.DependenteBO;
 import ctrl.ClienteCTRL;
 import ctrl.DependenteCTRL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import persistencia.ChaleDAO;
+import persistencia.DependenteDAO;
 
 /**
  *
@@ -340,6 +345,22 @@ public class ManterDependente extends javax.swing.JInternalFrame {
             txt_nome.setText("");
             txt_telefone.setText("");
             bt_editar.setEnabled(true);
+            
+            DefaultTableModel model = (DefaultTableModel) grid_Dependentes.getModel();
+            model.setNumRows(0);
+            DependenteDAO obj = new DependenteDAO();
+            ArrayList lista = obj.listar();
+
+            for (int pos = 0; pos < lista.size(); pos++) {
+                String[] saida = new String[4];//novo
+                DependenteBO aux = (DependenteBO) (lista.get(pos));//novo
+                saida[0] = aux.getNome();//novo
+                saida[1] = "" + aux.getCPF();//novo
+                saida[2] = aux.getGrau_dependencia();//novo
+                saida[3] = "" + aux.getTelefone();//novo
+                //Incluir nova linha na Tabela
+                model.addRow(saida);//novo
+            }
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado.");

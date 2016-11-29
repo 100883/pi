@@ -6,7 +6,10 @@
 package persistencia;
 
 import bo.ClienteBO;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -79,6 +82,29 @@ public class ClienteDAO {
         /*conexao.conectaBD();
         conexao.executaSQL(SQL);
         conexao.desconectaBD();*/
+    }
+
+    public ArrayList listar() throws SQLException {
+        ClienteBO clienteBo = new ClienteBO();
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+
+        ArrayList dados = new ArrayList();
+        String SQL = "select * from socios";
+        conexao.conectaBD();
+        rs = conexao.executaConsulta(SQL);
+
+        while (rs.next()) {
+
+            clienteBo.setNome(rs.getString("nome"));
+            clienteBo.setDocumento(rs.getString("documento"));
+            clienteBo.setFone(rs.getString("fone"));
+            dados.add(clienteBo);
+        }
+        rs.close();
+        conexao.desconectaBD();
+        return dados;
+
     }
 
 }

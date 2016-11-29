@@ -6,7 +6,10 @@
 package persistencia;
 
 import bo.ChaleBO;
+import bo.ClienteBO;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,7 +32,8 @@ public class ChaleDAO {
         Conexao conexao = new Conexao();
         String SQL = "INSERT INTO chales (nome_cli,tipo_cli,documento_cli,codigo_conv,cep_cli,numero_cli,complemento_cli,fone_cli,fax_cli,email_cli) "
                 + "VALUES (" + chaleBo.getCod_chale()+ ","
-                + "'" + chaleBo.getDesc_chale()+ "'";
+                + "'" + chaleBo.getDesc_chale() + "'"
+                + "Disponível";
                                
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -53,6 +57,29 @@ public class ChaleDAO {
         rs.close();
         conexao.desconectaBD();
         return retorno;
+    }
+    
+    public ArrayList listar() throws SQLException {
+        ChaleBO chaleBo = new ChaleBO();
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+
+        ArrayList dados = new ArrayList();
+        String SQL = "select * from socios";
+        conexao.conectaBD();
+        rs = conexao.executaConsulta(SQL);
+
+        while (rs.next()) {
+
+            chaleBo.setCod_chale(rs.getInt("cod_chale"));
+            chaleBo.setDesc_chale(rs.getString("desc_chale"));
+            chaleBo.setStatus(rs.getString("status"));
+            dados.add(chaleBo);
+        }
+        rs.close();
+        conexao.desconectaBD();
+        return dados;
+
     }
     
 }

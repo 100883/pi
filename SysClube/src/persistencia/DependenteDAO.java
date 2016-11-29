@@ -9,6 +9,7 @@ import bo.ClienteBO;
 import bo.DependenteBO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,6 +71,30 @@ public class DependenteDAO {
         rs.close();
         conexao.desconectaBD();
         return retorno;
+    }
+    
+    public ArrayList listar() throws SQLException {
+        DependenteBO dependenteBo = new DependenteBO();
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+
+        ArrayList dados = new ArrayList();
+        String SQL = "select * from dependentes";
+        conexao.conectaBD();
+        rs = conexao.executaConsulta(SQL);
+
+        while (rs.next()) {
+
+            dependenteBo.setNome(rs.getString("nome"));
+            dependenteBo.setCPF(rs.getInt("CPF"));
+            dependenteBo.setGrau_dependencia(rs.getString("grau_dependencia"));
+            dependenteBo.setTelefone(rs.getInt("telefone"));
+            dados.add(dependenteBo);
+        }
+        rs.close();
+        conexao.desconectaBD();
+        return dados;
+
     }
 
 }

@@ -7,6 +7,7 @@ package interfacegrafica;
 
 import bo.LocarChaleBO;
 import ctrl.LocarChaleCTRL;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,14 +15,18 @@ import javax.swing.JOptionPane;
  * @author Aluno
  */
 public class ManterLocacao extends javax.swing.JInternalFrame {
+    private Util u = new Util();
+
+    private JFrame tela1;
 
     /**
      * Creates new form ManterLocacao
      */
     public ManterLocacao() {
         initComponents();
+        this.tela1 = tela1;
     }
-    
+
     LocarChaleBO locarchaleBo = new LocarChaleBO();
     LocarChaleCTRL locarchaleCtrl = new LocarChaleCTRL();
     String op = "";
@@ -36,7 +41,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        bt_buscarSocio = new javax.swing.JButton();
+        bt_ListarSocio = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_matriculaSocio = new javax.swing.JTextField();
@@ -49,7 +54,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_NumLocacao = new javax.swing.JTextField();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        bt_buscarChale = new javax.swing.JButton();
+        bt_listarChale = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_codChale = new javax.swing.JTextField();
@@ -59,10 +64,10 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Sócio"));
 
-        bt_buscarSocio.setText("Listar");
-        bt_buscarSocio.addActionListener(new java.awt.event.ActionListener() {
+        bt_ListarSocio.setText("Listar");
+        bt_ListarSocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_buscarSocioActionPerformed(evt);
+                bt_ListarSocioActionPerformed(evt);
             }
         });
 
@@ -70,7 +75,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome: ");
 
-        jLayeredPane1.setLayer(bt_buscarSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(bt_ListarSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(txt_matriculaSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -83,7 +88,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_buscarSocio)
+                    .addComponent(bt_ListarSocio)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -100,7 +105,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_buscarSocio)
+                .addComponent(bt_ListarSocio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -162,10 +167,10 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Chalé"));
 
-        bt_buscarChale.setText("Listar");
-        bt_buscarChale.addActionListener(new java.awt.event.ActionListener() {
+        bt_listarChale.setText("Listar");
+        bt_listarChale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_buscarChaleActionPerformed(evt);
+                bt_listarChaleActionPerformed(evt);
             }
         });
 
@@ -179,7 +184,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             }
         });
 
-        jLayeredPane2.setLayer(bt_buscarChale, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(bt_listarChale, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txt_codChale, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -196,7 +201,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt_descChale, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bt_buscarChale)
+                    .addComponent(bt_listarChale)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -207,7 +212,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_buscarChale)
+                .addComponent(bt_listarChale)
                 .addGap(9, 9, 9)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -269,7 +274,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
         op = "incluir";
         txt_NumLocacao.setEnabled(false);
-        txt_NumLocacao.setText(String.valueOf(locarchaleBo.getNum_aluguel()+ 1)); //TESTE DE ALTO INCREMENTO DO PROX CODIGO
+        txt_NumLocacao.setText(String.valueOf(locarchaleBo.getNum_aluguel() + 1)); //TESTE DE ALTO INCREMENTO DO PROX CODIGO
         DesbloquearCampos();
         //LimparCampos();
         bt_novo.setEnabled(false);
@@ -284,7 +289,6 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             try {
                 locarchaleBo.setMatriculaSocio(Integer.parseInt(txt_matriculaSocio.getText()));
                 locarchaleBo.setNum_chale(Integer.parseInt(txt_codChale.getText()));
-                
 
                 if ("incluir".equals(op)) {
                     locarchaleCtrl.IncluirLocacao(locarchaleBo);
@@ -319,8 +323,8 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
             txt_matriculaSocio.setText(toString());
             //txt_codChale.set(retorno.getTipo()); CORRIGIR
-           // txt_documento.setText(retorno.getDocumento()); CORRIGIR
-            
+            // txt_documento.setText(retorno.getDocumento()); CORRIGIR
+
             bt_editar.setEnabled(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Locação não encontrado.");
@@ -346,15 +350,21 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_codChaleActionPerformed
 
-    private void bt_buscarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarSocioActionPerformed
-        ListarSocio tela = new ListarSocio();
-        tela.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_bt_buscarSocioActionPerformed
+    private void bt_ListarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ListarSocioActionPerformed
+        ListarSocio f1 = new ListarSocio();
+        Principal.jDesktopPane1.add(f1);        
+        f1.setVisible(true);
+        Util u = null;
+        this.u.centralizar(f1);
+    }//GEN-LAST:event_bt_ListarSocioActionPerformed
 
-    private void bt_buscarChaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarChaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bt_buscarChaleActionPerformed
+    private void bt_listarChaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_listarChaleActionPerformed
+        ListarChale f2 = new ListarChale();
+        Principal.jDesktopPane1.add(f2);
+        f2.setVisible(true);
+        Util u = null;
+        this.u.centralizar(f2);
+    }//GEN-LAST:event_bt_listarChaleActionPerformed
 
     private void LimparCampos() {
         txt_NumLocacao.setText("");
@@ -370,7 +380,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_nomeSocio.setEditable(false);
         txt_codChale.setEditable(false);
         txt_descChale.setEditable(false);
-        
+
     }
 
     private void DesbloquearCampos() {
@@ -379,15 +389,15 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_nomeSocio.setEditable(true);
         txt_codChale.setEditable(true);
         txt_descChale.setEditable(true);
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_ListarSocio;
     private javax.swing.JButton bt_buscar;
-    private javax.swing.JButton bt_buscarChale;
-    private javax.swing.JButton bt_buscarSocio;
     private javax.swing.JButton bt_editar;
     private javax.swing.JButton bt_fechar;
+    private javax.swing.JButton bt_listarChale;
     private javax.swing.JButton bt_novo;
     private javax.swing.JButton bt_salvar;
     private javax.swing.JLabel jLabel1;

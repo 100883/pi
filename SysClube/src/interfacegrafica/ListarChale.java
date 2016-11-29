@@ -5,6 +5,13 @@
  */
 package interfacegrafica;
 
+import bo.ChaleBO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import persistencia.ChaleDAO;
+
+
 /**
  *
  * @author Aluno
@@ -34,13 +41,18 @@ public class ListarChale extends javax.swing.JInternalFrame {
         txt_nomeSocio = new javax.swing.JTextField();
 
         bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "CPF"
+                "Código Chalé", "Descrição", "Situação"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -83,8 +95,30 @@ public class ListarChale extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_listarActionPerformed
-        // TODO add your handling code here:
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setNumRows(0);
+            ChaleDAO obj = new ChaleDAO();
+            ArrayList lista = obj.listar();
+
+            for (int pos = 0; pos < lista.size(); pos++) {
+                String[] saida = new String[3];//novo
+                ChaleBO aux = (ChaleBO) (lista.get(pos));//novo
+                saida[0] = "" + aux.getCod_chale();//novo
+                saida[1] = aux.getDesc_chale();//novo
+                saida[2] = aux.getStatus();//novo
+                //Incluir nova linha na Tabela
+                model.addRow(saida);//novo
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Chalé não encontrado");
+
+        }
     }//GEN-LAST:event_txt_listarActionPerformed
+
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bt_voltarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
