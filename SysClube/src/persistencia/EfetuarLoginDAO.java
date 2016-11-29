@@ -33,6 +33,7 @@ public class EfetuarLoginDAO {
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
         if (rs.next()) {
+            consulta.setMatricula(rs.getInt("matricula_usu"));
             consulta.setSenha(rs.getString("senha_usu"));
             consulta.setStatus(rs.getBoolean("status_usu"));
             consulta.setNome(rs.getString("nome_usu"));
@@ -45,6 +46,7 @@ public class EfetuarLoginDAO {
             if (consulta.getSenha().equals(loginBo.getSenha())) {
                 String SQL2 = "INSERT INTO logs (matricula_usu,data_log) "
                         + "VALUES (" + loginBo.getMatricula() + ",'" + getDateTime() + "')";
+                
                 conexao.conectaBD();
                 conexao.executaSQL(SQL2);
                 conexao.desconectaBD();

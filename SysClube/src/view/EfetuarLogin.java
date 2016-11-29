@@ -136,7 +136,9 @@ public class EfetuarLogin extends javax.swing.JDialog {
             } else {
                 loginBo.setMatricula(Integer.parseInt(txt_matricula.getText()));
                 loginBo.setSenha(txt_senha.getText());
+                
                 retorno = efetuarLoginCtrl.EfetuarLogin(loginBo);
+                
                 if (retorno != 0) {
                     Principal principal = new Principal(retorno);
                     this.dispose();
