@@ -336,15 +336,14 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         
         try {
             dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
-            //retorno = clienteCtrl.BuscaCliente(clienteBo);
+            retorno = dependenteCtrl.BuscaDependente(dependenteBo);
 
-            txt_codigoSocio.setText("");
-            cmb_tipoGrau.setSelectedItem("Esposo(a)");
-            txt_NomeSocio.setText("");
-            txt_documento.setText("");
-            txt_nome.setText("");
-            txt_telefone.setText("");
+            txt_codigoSocio.setText("" + retorno.getCod_socio());
+            txt_NomeSocio.setText(retorno.getNomeSocio());
+            
             bt_editar.setEnabled(true);
+            txt_codigoSocio.setEnabled(false);
+            txt_NomeSocio.setEnabled(false);
             
             DefaultTableModel model = (DefaultTableModel) grid_Dependentes.getModel();
             model.setNumRows(0);

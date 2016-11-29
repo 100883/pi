@@ -52,18 +52,14 @@ public class DependenteDAO {
 
         ResultSet rs = null;
         Conexao conexao = new Conexao();
-        String SQL = "SELECT * FROM dependentes WHERE codigo_cli = " + dependenteBo.getCod_socio() + "";
+        String SQL = "SELECT * FROM SOCIOS WHERE codigo_cli = " + dependenteBo.getCod_socio() + "";
 
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 
         if (rs.next()) {
             retorno.setCod_socio(rs.getInt("codigo_cli"));
-            retorno2.setNome(rs.getString("nome"));
-            retorno.setNome(rs.getString("nome_dep"));
-            retorno.setCPF(rs.getInt("documento_dep"));
-            retorno.setTelefone(rs.getInt("fone_cli"));
-            retorno.setGrau_dependencia(rs.getString("grau_dep"));
+            retorno.setNomeSocio(rs.getString("nome_cli"));
         }
 
         rs.close();
