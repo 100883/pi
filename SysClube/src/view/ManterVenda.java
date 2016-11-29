@@ -443,19 +443,19 @@ public class ManterVenda extends javax.swing.JInternalFrame {
         if (aux.length() == 13) {
             if (aux.equals("1111111111111")) {
                 codigo = "1111111111111";
-                descricao = "NISULID 10MG";
-                valor = "19.00";
+                descricao = "PICOLÉ";
+                valor = "4.00";
                 subtotal = subtotal + Double.parseDouble(valor);
                 IncluiItem();
             } else if (aux.equals("2222222222222")) {
                 codigo = "2222222222222";
-                descricao = "PARACETAMOL 6COMP 500MG";
+                descricao = "BATATAS";
                 valor = "4.50";
                 subtotal = subtotal + Double.parseDouble(valor);
                 IncluiItem();
             } else if (aux.equals("3333333333333")) {
                 codigo = "3333333333333";
-                descricao = "GELOL TUB 120G";
+                descricao = "PROTETOR SOLAR";
                 valor = "24.00";
                 subtotal = subtotal + Double.parseDouble(valor);
                 IncluiItem();
@@ -482,14 +482,14 @@ public class ManterVenda extends javax.swing.JInternalFrame {
         aux = aux.replace(" ", "");
         if (aux.length() == 14) {
             if (aux.equals("111.111.111-11")) {
-                lb_cliente.setText("LUIZ ANTONIO FREITAS JUNIOR");
-                lb_convenio.setText("IPASGO");
+                lb_cliente.setText("GUILHERME DE LIMA FREITAS");
+                lb_convenio.setText("SÓCIO");
                 txDesconto = 5;
                 lp_produtos.setEnabled(false);
                 txt_codProduto.setEnabled(true);
             } else if (aux.equals("222.222.222-22")) {
-                lb_cliente.setText("DANILO XAVIER TEIXEIRA DOS SANTOS");
-                lb_convenio.setText("UNIMED");
+                lb_cliente.setText("JEFERSON GUSTAVO M. DA SILVA");
+                lb_convenio.setText("SÓCIO MASTER");
                 txDesconto = 10;
                 txt_codProduto.setEnabled(true);
             } else if (aux.equals("000.000.000-00")) {

@@ -254,6 +254,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
 
         jLabel21.setText("Município :");
 
+        bt_cep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/lupa.png"))); // NOI18N
         bt_cep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_cepActionPerformed(evt);

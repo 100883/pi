@@ -385,6 +385,11 @@
         <Component class="javax.swing.JFormattedTextField" name="txt_uf">
         </Component>
         <Component class="javax.swing.JButton" name="bt_cep">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/lupa.png"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_cepActionPerformed"/>
           </Events>
