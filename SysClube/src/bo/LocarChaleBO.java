@@ -13,7 +13,9 @@ public class LocarChaleBO {
     //Atributos
     private int num_aluguel;
     private int num_chale;
+    private String desc_chale;
     private int matriculaSocio;
+    private String nomeSocio;
     private String status;
     private int qtdDiarias;
     private double vlrDiarias;
@@ -74,6 +76,22 @@ public class LocarChaleBO {
 
     public void setTotalDiaria(double totalDiaria) {
         this.totalDiaria = totalDiaria;
+    }
+
+    public String getDesc_chale() {
+        return desc_chale;
+    }
+
+    public String getNomeSocio() {
+        return nomeSocio;
+    }
+
+    public void setDesc_chale(String desc_chale) {
+        this.desc_chale = desc_chale;
+    }
+
+    public void setNomeSocio(String nomeSocio) {
+        this.nomeSocio = nomeSocio;
     }
     
     
