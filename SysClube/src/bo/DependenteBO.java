@@ -14,9 +14,9 @@ public class DependenteBO {
     //Atributos
     private String nome;
     protected String nomeSocio;
-    private int telefone;
-    private int CPF;
-    private int cod_socio;
+    private String telefone;
+    private String CPF;
+    private String cod_socio;
     protected String grau_dependencia;
 
     //Metodos
@@ -24,11 +24,11 @@ public class DependenteBO {
         return nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
@@ -36,19 +36,19 @@ public class DependenteBO {
         this.nome = nome;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public void setCPF(int CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 
-    public int getCod_socio() {
+    public String getCod_socio() {
         return cod_socio;
     }
 
-    public void setCod_socio(int cod_socio) {
+    public void setCod_socio(String cod_socio) {
         this.cod_socio = cod_socio;
     }
 

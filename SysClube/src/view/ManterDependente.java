@@ -349,8 +349,8 @@ public class ManterDependente extends javax.swing.JInternalFrame {
     private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
         DependenteBO retorno = new DependenteBO();
 
-        try {
-            dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
+        try {     
+            dependenteBo.setCod_socio(txt_codigoSocio.getText());
             retorno = dependenteCtrl.BuscaDependente(dependenteBo);
 
             txt_codigoSocio.setText("" + retorno.getCod_socio());
@@ -359,11 +359,11 @@ public class ManterDependente extends javax.swing.JInternalFrame {
             bt_editar.setEnabled(true);
             txt_codigoSocio.setEnabled(false);
             txt_NomeSocio.setEnabled(false);
-
+            
             DefaultTableModel model = (DefaultTableModel) grid_Dependentes.getModel();
             model.setNumRows(0);
             DependenteDAO obj = new DependenteDAO();
-            ArrayList lista = obj.listar();
+            ArrayList lista = obj.listar(dependenteBo.getCod_socio());
 
             for (int pos = 0; pos < lista.size(); pos++) {
                 String[] saida = new String[4];//novo
@@ -391,11 +391,11 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         if ((!txt_nome.getText().equals("")) || (!txt_documento.getText().equals("")) || (!cmb_tipoGrau.getSelectedItem().equals(""))) {
 
             try {
-                dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
+                dependenteBo.setCod_socio(txt_codigoSocio.getText());
                 dependenteBo.setNomeSocio(txt_NomeSocio.getText());
                 dependenteBo.setNome(txt_nome.getText());
-                dependenteBo.setCPF(Integer.parseInt(txt_documento.getText()));
-                dependenteBo.setTelefone(Integer.parseInt(txt_telefone.getText()));
+                dependenteBo.setCPF(txt_documento.getText());
+                dependenteBo.setTelefone(txt_telefone.getText());
 
                 if ("Esposo(a)".equals(cmb_tipoGrau.getSelectedItem())) {
                     dependenteBo.setGrau_dependencia("Esposo(a)");

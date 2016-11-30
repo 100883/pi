@@ -19,12 +19,12 @@ public class DependenteDAO {
 
     public static void IncluirDependente(DependenteBO dependenteBo) {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO dependentes (codigo_dep, nome_dep, documento_dep, grau_dep, codigo_cli, fone_cli) "
-                + "VALUES (" + dependenteBo.getNome()+ ","
+        String SQL = "INSERT INTO dependentes (nome_dep, documento_dep, grau_dep, codigo_cli, fone_cli) "
+                + "VALUES ('" + dependenteBo.getNome()+ "',"
                 + "'" + dependenteBo.getCPF()+ "',"
                 + "'" + dependenteBo.getGrau_dependencia()+ "',"
                 + "'" + dependenteBo.getCod_socio()+ "',"
-                + "'" + dependenteBo.getTelefone() + "'";
+                + "'" + dependenteBo.getTelefone() + "');";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -58,7 +58,7 @@ public class DependenteDAO {
         rs = conexao.executaConsulta(SQL);
 
         if (rs.next()) {
-            retorno.setCod_socio(rs.getInt("codigo_cli"));
+            retorno.setCod_socio(rs.getString("codigo_cli"));
             retorno.setNomeSocio(rs.getString("nome_cli"));
         }
 
@@ -67,22 +67,22 @@ public class DependenteDAO {
         return retorno;
     }
     
-    public ArrayList listar() throws SQLException {
+    public ArrayList listar(String cod_socio) throws SQLException {
         DependenteBO dependenteBo = new DependenteBO();
         ResultSet rs = null;
         Conexao conexao = new Conexao();
 
         ArrayList dados = new ArrayList();
-        String SQL = "select * from dependentes";
+        String SQL = "SELECT * FROM dependentes WHERE codigo_cli = " + cod_socio + "";
         conexao.conectaBD();
         rs = conexao.executaConsulta(SQL);
 
         while (rs.next()) {
 
             dependenteBo.setNome(rs.getString("nome_dep"));
-            dependenteBo.setCPF(rs.getInt("documento_dep"));
+            dependenteBo.setCPF(rs.getString("documento_dep"));
             dependenteBo.setGrau_dependencia(rs.getString("grau_dep"));
-            dependenteBo.setTelefone(rs.getInt("fone_cli"));
+            dependenteBo.setTelefone(rs.getString("fone_cli"));
             dados.add(dependenteBo);
         }
         rs.close();
