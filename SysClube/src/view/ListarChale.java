@@ -57,6 +57,11 @@ public class ListarChale extends javax.swing.JInternalFrame {
                 "Código Chalé", "Descrição", "Situação"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         txt_listar.setText("Listar");
@@ -122,6 +127,13 @@ public class ListarChale extends javax.swing.JInternalFrame {
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
         this.dispose();
     }//GEN-LAST:event_bt_voltarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+       if(evt.getClickCount() == 2){
+           
+       }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

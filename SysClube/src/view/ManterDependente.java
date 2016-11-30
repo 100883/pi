@@ -26,8 +26,10 @@ import persistencia.DependenteDAO;
 public class ManterDependente extends javax.swing.JInternalFrame {
 
     ClienteBO clienteBo = new ClienteBO();
+    ClienteCTRL clienteCtrl = new ClienteCTRL();
     DependenteBO dependenteBo = new DependenteBO();
     DependenteCTRL dependenteCtrl = new DependenteCTRL();
+
     String op = "";
     MaskFormatter mascaraCPF;
 
@@ -311,10 +313,23 @@ public class ManterDependente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bt_fecharActionPerformed
 
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
-        op = "incluir";
+        ClienteBO retorno = new ClienteBO();
+        try {
+            clienteBo.setCodigo(Integer.parseInt(txt_codigoSocio.getText()));
+            retorno = clienteCtrl.BuscaCliente(clienteBo);
+
+            txt_codigoSocio.setText("" + retorno.getCodigo());
+            txt_NomeSocio.setText(retorno.getNome());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
+            LimparCampos();
+        }
         txt_codigoSocio.setEnabled(false);
+        txt_NomeSocio.setEnabled(false);
+        op = "incluir";
         DesbloquearCampos();
-        LimparCampos();
+        //LimparCampos();
         bt_novo.setEnabled(false);
         bt_buscar.setEnabled(false);
         bt_editar.setEnabled(false);
@@ -333,18 +348,18 @@ public class ManterDependente extends javax.swing.JInternalFrame {
 
     private void bt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_buscarActionPerformed
         DependenteBO retorno = new DependenteBO();
-        
+
         try {
             dependenteBo.setCod_socio(Integer.parseInt(txt_codigoSocio.getText()));
             retorno = dependenteCtrl.BuscaDependente(dependenteBo);
 
             txt_codigoSocio.setText("" + retorno.getCod_socio());
             txt_NomeSocio.setText(retorno.getNomeSocio());
-            
+
             bt_editar.setEnabled(true);
             txt_codigoSocio.setEnabled(false);
             txt_NomeSocio.setEnabled(false);
-            
+
             DefaultTableModel model = (DefaultTableModel) grid_Dependentes.getModel();
             model.setNumRows(0);
             DependenteDAO obj = new DependenteDAO();
@@ -360,12 +375,12 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 //Incluir nova linha na Tabela
                 model.addRow(saida);//novo
             }
-            
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Cliente não encontrado.");
             LimparCampos();
         }
-    
+
     }//GEN-LAST:event_bt_buscarActionPerformed
 
     private void cmb_tipoGrauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_tipoGrauActionPerformed
@@ -381,12 +396,12 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 dependenteBo.setNome(txt_nome.getText());
                 dependenteBo.setCPF(Integer.parseInt(txt_documento.getText()));
                 dependenteBo.setTelefone(Integer.parseInt(txt_telefone.getText()));
-                
+
                 if ("Esposo(a)".equals(cmb_tipoGrau.getSelectedItem())) {
-                        dependenteBo.setGrau_dependencia("Esposo(a)");
-                    } else if ("Filho(a)".equals(cmb_tipoGrau.getSelectedItem())) {
-                        dependenteBo.setGrau_dependencia("Filho(a)");
-                    }
+                    dependenteBo.setGrau_dependencia("Esposo(a)");
+                } else if ("Filho(a)".equals(cmb_tipoGrau.getSelectedItem())) {
+                    dependenteBo.setGrau_dependencia("Filho(a)");
+                }
 
                 if ("incluir".equals(op)) {
                     dependenteCtrl.IncluirDependente(dependenteBo);
@@ -403,7 +418,7 @@ public class ManterDependente extends javax.swing.JInternalFrame {
                 txt_codigoSocio.setEnabled(true);
                 bt_editar.setEnabled(false);
                 bt_salvar.setEnabled(false);
-                bt_buscar.setEnabled(true);  
+                bt_buscar.setEnabled(true);
                 bt_novo.setEnabled(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -413,14 +428,14 @@ public class ManterDependente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_bt_salvarActionPerformed
 
-private void LimparCampos() {
+    private void LimparCampos() {
         txt_codigoSocio.setText("");
         cmb_tipoGrau.setSelectedItem("Esposo(a)");
         txt_NomeSocio.setText("");
         txt_documento.setText("");
         txt_nome.setText("");
         txt_telefone.setText("");
-        
+
     }
 
     private void BloquearCampos() {

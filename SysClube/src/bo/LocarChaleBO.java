@@ -15,6 +15,9 @@ public class LocarChaleBO {
     private int num_chale;
     private int matriculaSocio;
     private String status;
+    private int qtdDiarias;
+    private double vlrDiarias;
+    private double totalDiaria;
     
     //Metodos
     public int getNum_chale() {
@@ -47,6 +50,30 @@ public class LocarChaleBO {
 
     public void setNum_aluguel(int num_aluguel) {
         this.num_aluguel = num_aluguel;
+    }
+
+    public int getQtdDiarias() {
+        return qtdDiarias;
+    }
+
+    public double getVlrDiarias() {
+        return vlrDiarias;
+    }
+
+    public double getTotalDiaria() {
+        return totalDiaria;
+    }
+
+    public void setQtdDiarias(int qtdDiarias) {
+        this.qtdDiarias = qtdDiarias;
+    }
+
+    public void setVlrDiarias(double vlrDiarias) {
+        this.vlrDiarias = vlrDiarias;
+    }
+
+    public void setTotalDiaria(double totalDiaria) {
+        this.totalDiaria = totalDiaria;
     }
     
     

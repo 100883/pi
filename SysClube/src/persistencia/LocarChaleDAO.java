@@ -19,11 +19,14 @@ public class LocarChaleDAO {
 
     public void IncluirLocacao(LocarChaleBO locarchaleBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO locacao (matricula_usu, status_usu, cpf_usu, nome_usu) "
-                + "VALUES (" + locarchaleBo.getNum_aluguel() + ","
-                + locarchaleBo.getMatriculaSocio() + ","
-                + "'" + locarchaleBo.getNum_chale() + "',"
-                + "'Alugado')";
+        String SQL = "INSERT INTO locacao (num_aluguel, codigo_cli, num_chale, status, qdtDias, vlrDia, totalDias) "
+                + "VALUES (" + locarchaleBo.getNum_aluguel()            + ","
+                             + "'" + locarchaleBo.getMatriculaSocio()   + "',"
+                             + "'" + locarchaleBo.getNum_chale()        + "',"
+                             + "'Alugado'"                              + ","
+                             + locarchaleBo.getQtdDiarias()             + ","
+                             + locarchaleBo.getVlrDiarias()             + "," 
+                             + locarchaleBo.getTotalDiaria()            + ")";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -33,11 +36,14 @@ public class LocarChaleDAO {
 
     public void AlterarLocacao(LocarChaleBO locarchaleBo) {
         Conexao conexao = new Conexao();
-        String SQL = "UPDATE locacao SET nume_aluguel = "
-                + "'" + locarchaleBo.getNum_aluguel() + "'"
-                + ", matriculaSocio = '" + locarchaleBo.getMatriculaSocio() + "'"
-                + "nume_chale" + locarchaleBo.getNum_chale() + ""
-                + " WHERE codigo_cli = " + locarchaleBo.getNum_aluguel() + "";
+        String SQL = "UPDATE locacao SET "
+                + "num_aluguel = '" + locarchaleBo.getNum_aluguel() + "',"
+                + "codigo_cli = '" + locarchaleBo.getMatriculaSocio() + "',"
+                + "num_chale = " + locarchaleBo.getNum_chale() + ","
+                + "qdtDias = " + locarchaleBo.getQtdDiarias()+ ","
+                + "vlrDia = " + locarchaleBo.getVlrDiarias()+ ","
+                + "totalDias = " + locarchaleBo.getTotalDiaria()+ ","
+                + " WHERE num_aluguel = " + locarchaleBo.getNum_aluguel() + "";
 
         conexao.conectaBD();
         conexao.executaSQL(SQL);

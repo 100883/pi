@@ -64,6 +64,13 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_codChale = new javax.swing.JTextField();
         txt_descChale = new javax.swing.JTextField();
         jLayeredPane3 = new javax.swing.JLayeredPane();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_qtdDiarias = new javax.swing.JTextField();
+        txt_vlrDiarias = new javax.swing.JTextField();
+        bt_calcular = new javax.swing.JButton();
+        txt_totalDiarias = new javax.swing.JFormattedTextField();
 
         setTitle("Locação");
 
@@ -231,15 +238,68 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
         jLayeredPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Financeiros"));
 
+        jLabel6.setText("Qtd Diárias: ");
+
+        jLabel7.setText("Valor diárias: ");
+
+        jLabel8.setText("Total: ");
+
+        bt_calcular.setText("Calcular");
+        bt_calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_calcularActionPerformed(evt);
+            }
+        });
+
+        txt_totalDiarias.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("R$#,##0.00"))));
+        txt_totalDiarias.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        jLayeredPane3.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(txt_qtdDiarias, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(txt_vlrDiarias, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(bt_calcular, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane3.setLayer(txt_totalDiarias, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jLayeredPane3Layout = new javax.swing.GroupLayout(jLayeredPane3);
         jLayeredPane3.setLayout(jLayeredPane3Layout);
         jLayeredPane3Layout.setHorizontalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_qtdDiarias, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(txt_vlrDiarias)
+                            .addComponent(txt_totalDiarias)))
+                    .addComponent(bt_calcular))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane3Layout.setVerticalGroup(
             jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 122, Short.MAX_VALUE)
+            .addGroup(jLayeredPane3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_qtdDiarias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_vlrDiarias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bt_calcular)
+                .addGap(8, 8, 8)
+                .addGroup(jLayeredPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_totalDiarias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,6 +362,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         bt_buscar.setEnabled(false);
         bt_editar.setEnabled(false);
         bt_salvar.setEnabled(true);
+        txt_totalDiarias.setEnabled(false);
     }//GEN-LAST:event_bt_novoActionPerformed
 
     private void bt_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salvarActionPerformed
@@ -387,6 +448,26 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         this.u.centralizar(f2);
     }//GEN-LAST:event_bt_listarChaleActionPerformed
 
+    private void bt_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_calcularActionPerformed
+        try {
+            int qtdDiarias = Integer.parseInt(txt_qtdDiarias.getText());
+            double vlrDiarias = Double.parseDouble(txt_vlrDiarias.getText());
+            
+            if(("0".equals(qtdDiarias)||"0".equals(vlrDiarias))){
+                JOptionPane.showMessageDialog(null, "É obrigatório a quantidade e o valor das diárias");
+            }else {
+                double vlrTotal = qtdDiarias * vlrDiarias;
+                
+                txt_totalDiarias.setText("R$ " + vlrTotal);
+                
+            }
+                
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+    }//GEN-LAST:event_bt_calcularActionPerformed
+
     private void LimparCampos() {
         txt_NumLocacao.setText("");
         txt_matriculaSocio.setText("");
@@ -416,6 +497,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_ListarSocio;
     private javax.swing.JButton bt_buscar;
+    private javax.swing.JButton bt_calcular;
     private javax.swing.JButton bt_editar;
     private javax.swing.JButton bt_fechar;
     private javax.swing.JButton bt_listarChale;
@@ -426,6 +508,9 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
@@ -434,5 +519,8 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_descChale;
     private javax.swing.JTextField txt_matriculaSocio;
     private javax.swing.JTextField txt_nomeSocio;
+    private javax.swing.JTextField txt_qtdDiarias;
+    private javax.swing.JFormattedTextField txt_totalDiarias;
+    private javax.swing.JTextField txt_vlrDiarias;
     // End of variables declaration//GEN-END:variables
 }
