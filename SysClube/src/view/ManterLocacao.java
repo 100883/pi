@@ -15,9 +15,9 @@ import javax.swing.JOptionPane;
  * @author Aluno
  */
 public class ManterLocacao extends javax.swing.JInternalFrame {
-
+    
     private Util u = new Util();
-
+    
     private JFrame tela1;
 
     /**
@@ -30,7 +30,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         bt_editar.setEnabled(false);
         txt_NumLocacao.setEditable(true);
     }
-
+    
     LocarChaleBO locarchaleBo = new LocarChaleBO();
     LocarChaleCTRL locarchaleCtrl = new LocarChaleCTRL();
     String op = "";
@@ -367,19 +367,19 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
 
     private void bt_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salvarActionPerformed
         if ((!txt_matriculaSocio.getText().equals("")) || (!txt_codChale.getText().equals(""))) {
-
+            
             try {
                 locarchaleBo.setMatriculaSocio(Integer.parseInt(txt_matriculaSocio.getText()));
                 locarchaleBo.setNum_chale(Integer.parseInt(txt_codChale.getText()));
-
+                
                 if ("incluir".equals(op)) {
                     locarchaleCtrl.IncluirLocacao(locarchaleBo);
                 }
-
+                
                 if ("alterar".equals(op)) {
                     locarchaleCtrl.AlterarLocacao(locarchaleBo);
                 }
-
+                
                 JOptionPane.showMessageDialog(null, "Salvo com sucesso.");
                 op = "";
                 LimparCampos();
@@ -402,12 +402,17 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         try {
             locarchaleBo.setNum_aluguel(Integer.parseInt(txt_NumLocacao.getText()));
             retorno = locarchaleCtrl.BuscaLocacao(locarchaleBo);
-
-            txt_matriculaSocio.setText(toString());
-            //txt_codChale.set(retorno.getTipo()); CORRIGIR
-            // txt_documento.setText(retorno.getDocumento()); CORRIGIR
-
+            
+            txt_matriculaSocio.setText("" + retorno.getMatriculaSocio());
+            txt_nomeSocio.setText(retorno.getNomeSocio());
+            txt_codChale.setText("" + retorno.getNum_chale());
+            txt_descChale.setText(retorno.getDesc_chale());
+            txt_qtdDiarias.setText("" + retorno.getQtdDiarias());
+            txt_vlrDiarias.setText("" + retorno.getVlrDiarias());
+            txt_totalDiarias.setText("" + retorno.getTotalDiaria());
+            
             bt_editar.setEnabled(true);
+            txt_NumLocacao.setEnabled(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Locação não encontrado.");
             LimparCampos();
@@ -453,21 +458,20 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
             int qtdDiarias = Integer.parseInt(txt_qtdDiarias.getText());
             double vlrDiarias = Double.parseDouble(txt_vlrDiarias.getText());
             
-            if(("0".equals(qtdDiarias)||"0".equals(vlrDiarias))){
+            if (("0".equals(qtdDiarias) || "0".equals(vlrDiarias))) {
                 JOptionPane.showMessageDialog(null, "É obrigatório a quantidade e o valor das diárias");
-            }else {
+            } else {
                 double vlrTotal = qtdDiarias * vlrDiarias;
                 
                 txt_totalDiarias.setText("R$ " + vlrTotal);
                 
             }
-                
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }//GEN-LAST:event_bt_calcularActionPerformed
-
+    
     private void LimparCampos() {
         txt_NumLocacao.setText("");
         txt_matriculaSocio.setText("");
@@ -475,23 +479,23 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_codChale.setText("");
         txt_descChale.setText("");
     }
-
+    
     private void BloquearCampos() {
         txt_NumLocacao.setEditable(false);
         txt_matriculaSocio.setEditable(false);
         txt_nomeSocio.setEditable(false);
         txt_codChale.setEditable(false);
         txt_descChale.setEditable(false);
-
+        
     }
-
+    
     private void DesbloquearCampos() {
         txt_NumLocacao.setEditable(true);
         txt_matriculaSocio.setEditable(true);
         txt_nomeSocio.setEditable(true);
         txt_codChale.setEditable(true);
         txt_descChale.setEditable(true);
-
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
