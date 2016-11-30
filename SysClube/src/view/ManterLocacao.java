@@ -355,7 +355,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
         op = "incluir";
         txt_NumLocacao.setEnabled(false);
-        txt_NumLocacao.setText(String.valueOf(locarchaleBo.getNum_aluguel() + 1)); //TESTE DE ALTO INCREMENTO DO PROX CODIGO
+        
         DesbloquearCampos();
         //LimparCampos();
         bt_novo.setEnabled(false);
@@ -427,6 +427,11 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         bt_editar.setEnabled(false);
         DesbloquearCampos();
         txt_NumLocacao.setEditable(false);
+        txt_matriculaSocio.setEditable(false);
+        txt_nomeSocio.setEditable(false);
+        txt_codChale.setEditable(false);
+        txt_descChale.setEditable(false);
+        txt_totalDiarias.setEnabled(false);
     }//GEN-LAST:event_bt_editarActionPerformed
 
     private void bt_fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_fecharActionPerformed
@@ -478,6 +483,9 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_nomeSocio.setText("");
         txt_codChale.setText("");
         txt_descChale.setText("");
+        txt_vlrDiarias.setText("");
+        txt_qtdDiarias.setText("");
+        txt_totalDiarias.setText("");
     }
     
     private void BloquearCampos() {
@@ -486,6 +494,7 @@ public class ManterLocacao extends javax.swing.JInternalFrame {
         txt_nomeSocio.setEditable(false);
         txt_codChale.setEditable(false);
         txt_descChale.setEditable(false);
+        txt_totalDiarias.setEnabled(false);
         
     }
     

@@ -19,7 +19,7 @@ public class LocarChaleDAO {
 
     public void IncluirLocacao(LocarChaleBO locarchaleBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO locacao (num_aluguel, codigo_cli, num_chale, status, qdtDias, vlrDia, totalDias) "
+        String SQL = "INSERT INTO locacao (num_aluguel, codigo_cli, num_chale, status, qdtDias, vlrDias, totalDias) "
                 + "VALUES (" + locarchaleBo.getNum_aluguel() + ","
                 + "'" + locarchaleBo.getMatriculaSocio() + "',"
                 + "'" + locarchaleBo.getNum_chale() + "',"
@@ -40,9 +40,10 @@ public class LocarChaleDAO {
                 + "num_aluguel = '" + locarchaleBo.getNum_aluguel() + "',"
                 + "codigo_cli = '" + locarchaleBo.getMatriculaSocio() + "',"
                 + "num_chale = " + locarchaleBo.getNum_chale() + ","
+                + "status = 'Alugado',"
                 + "qdtDias = " + locarchaleBo.getQtdDiarias() + ","
-                + "vlrDia = " + locarchaleBo.getVlrDiarias() + ","
-                + "totalDias = " + locarchaleBo.getTotalDiaria() + ","
+                + "vlrDias = " + locarchaleBo.getVlrDiarias() + ","
+                + "totalDias = " + locarchaleBo.getTotalDiaria() + "\n"
                 + " WHERE num_aluguel = " + locarchaleBo.getNum_aluguel() + "";
 
         conexao.conectaBD();
