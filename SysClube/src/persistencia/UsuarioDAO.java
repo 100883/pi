@@ -6,23 +6,24 @@
 package persistencia;
 
 import bo.UsuarioBO;
+import ctrl.UsuarioCTRL;
 import java.sql.ResultSet;
 
 /**
  *
  * @author Gui Freitas
  */
-public class UsuarioDAO {
+public class UsuarioDAO{
 
     public void IncluirUsuario(UsuarioBO usuarioBo) throws Exception {
         Conexao conexao = new Conexao();
-        String SQL = "INSERT INTO usuarios (matricula_usu, status_usu, cpf_usu, nome_usu, acesso_usu, senha_usu) "
+        String SQL = "INSERT INTO usuarios (matricula_usu, cpf_usu, nome_usu, acesso_usu, senha_usu, status_usu) "
                 + "VALUES ("    + usuarioBo.getMatricula()      + ","    
-                                + usuarioBo.getStatus()         + ","
                                 + "'" + usuarioBo.getCpf()      + "',"
                                 + "'" + usuarioBo.getNome()     + "'," 
                                 + "'" + usuarioBo.getAcesso()   + "',"
-                                + "'" + usuarioBo.getSenha()    + "')";
+                                + "'" + usuarioBo.getSenha()    + "',"
+                                + usuarioBo.getStatus()         + ")";
         
         conexao.conectaBD();
         conexao.executaSQL(SQL);
@@ -55,12 +56,12 @@ public class UsuarioDAO {
         rs = conexao.executaConsulta(SQL);
         
         if (rs.next()) {
-            retorno.setMatricula((int)rs.getInt("matricula"));
-            retorno.setStatus((int)rs.getInt("status"));
-            retorno.setCpf(rs.getString("cpf"));
-            retorno.setNome(rs.getString("nome"));
-            retorno.setSenha(rs.getString("senha"));
-            retorno.setAcesso(rs.getString("acesso"));
+            retorno.setMatricula(rs.getInt("matricula_usu"));
+            retorno.setCpf(rs.getString("cpf_usu"));
+            retorno.setNome(rs.getString("nome_usu"));
+            retorno.setSenha(rs.getString("senha_usu"));
+            retorno.setAcesso(rs.getString("acesso_usu"));
+            retorno.setStatus(rs.getBoolean("status_usu"));
         }
         rs.close();
         conexao.desconectaBD();

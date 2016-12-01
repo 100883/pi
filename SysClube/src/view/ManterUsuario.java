@@ -336,18 +336,18 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
                     usuarioBo.setMatricula(Integer.parseInt(txt_matricula.getText()));
 
                     if (cb_ativo.isSelected()) {
-                        usuarioBo.setStatus(1);
+                        usuarioBo.setStatus(true);
                     } else {
-                        usuarioBo.setStatus(0);
+                        usuarioBo.setStatus(false);
                     }
                     usuarioBo.setCpf(txt_cpf.getText());
                     usuarioBo.setNome(txt_nome.getText());
                     usuarioBo.setSenha(txt_senha.getText());
 
                     if ("Gerente".equals(cmb_acesso.getSelectedItem())) {
-                        usuarioBo.setAcesso("Gerente");
+                        usuarioBo.setAcesso("2");
                     } else if ("Secretária".equals(cmb_acesso.getSelectedItem())) {
-                        usuarioBo.setAcesso("Secretária");
+                        usuarioBo.setAcesso("1");
                     }
 
                     if ("incluir".equals(op)) {
@@ -383,7 +383,7 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
             
             retorno = usuarioCtrl.BuscaMatricula(usuarioBo);
 
-            if (retorno.getStatus() == 1) {
+            if (retorno.getStatus() == true) {
                 cb_ativo.setSelected(true);
             } else {
                 cb_ativo.setSelected(false);
@@ -393,10 +393,10 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
             txt_senha.setText(retorno.getSenha());
             txt_senha1.setText(retorno.getSenha());
 
-            if ("Gerente".equals(retorno.getAcesso())) {
+            if ("2".equals(retorno.getAcesso())) {
                 cmb_acesso.setSelectedItem("Gerente");
             } else {
-                if ("Secretária".equals(retorno.getAcesso())) {
+                if ("1".equals(retorno.getAcesso())) {
                     cmb_acesso.setSelectedItem("Secretária");
                 }
             }

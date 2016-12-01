@@ -180,7 +180,6 @@ public class ManterChale extends javax.swing.JInternalFrame {
     private void bt_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_novoActionPerformed
         op = "incluir";
         txt_codChale.setEnabled(false);
-        txt_codChale.setText(String.valueOf(chaleBo.getCod_chale()+ 1)); //TESTE DE ALTO INCREMENTO DO PROX CODIGO
         DesbloquearCampos();
         //LimparCampos();
         bt_novo.setEnabled(false);

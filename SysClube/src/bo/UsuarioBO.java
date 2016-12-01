@@ -16,7 +16,7 @@ public class UsuarioBO {
     private String nome;
     private String acesso;
     private String senha;
-    private int status;
+    private boolean status;
 
     /**
      * @return the matricula
@@ -88,11 +88,11 @@ public class UsuarioBO {
         this.senha = senha;
     }
 
-    public int getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     
